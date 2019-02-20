@@ -38,6 +38,28 @@ class MovieForm extends Component {
         });
     };
 
+    changeName = (event, id) => {
+
+        let movieId = this.state.movies.findIndex(movie => {
+            return movie.id === id;
+        });
+
+        let movie = {
+            ...this.state.movies[movieId],
+            movie: event.target.value
+        };
+
+        let movies = [...this.state.movies];
+        movies[movieId] = movie;
+
+        this.setState({
+            ...this.state,
+            movies
+        })
+    };
+
+
+
     addMovie = (event) => {
         event.preventDefault();
         let movie = {...this.state.currentMovie};
@@ -55,15 +77,23 @@ class MovieForm extends Component {
         return (
             <Fragment>
                 <div className="my_container">
-                    <form className="add">
+                    <form>
+                        <div className="add row">
+                            <div className="col col-10">
                         <input type="text" name="movie" value={this.state.currentMovie.movie} onChange={this.changeMovieInput}/>
+                            </div>
+                            <div className="col col-2">
                         <button type="submit" onClick={this.addMovie}>Добавить</button>
+                                </div>
+                            </div>
                     </form>
+                    <h2>Список фильмов</h2>
                     {this.state.movies.map((movie) => {
                     return <Movie
                         {...movie}
                         key={movie.id}
                         onDelete={() => this.deleteMovie(movie.id)}
+                        change={event => this.changeName(event, movie.id)}
                     />
                 })}
                 </div>
