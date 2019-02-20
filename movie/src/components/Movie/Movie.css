@@ -1,0 +1,16 @@
+.movie {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.movie p {
+    display: inline-block;
+    width: 70%;
+    margin: 1% 0 ;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.movie button {
+   float: right;
+}
