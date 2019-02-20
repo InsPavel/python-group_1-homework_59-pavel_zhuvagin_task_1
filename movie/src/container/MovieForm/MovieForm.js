@@ -23,13 +23,41 @@ class MovieForm extends Component {
         this.setState({movies})
         };
 
+    changeMovieInput = (event) => {
+        let name = event.target.name;
+        let value = event.target.value;
+
+        let currentMovie = {
+            ...this.state.currentMovie,
+            [name]: value
+        };
+
+        this.setState({
+            ...this.state,
+            currentMovie
+        });
+    };
+
+    addMovie = (event) => {
+        event.preventDefault();
+        let movie = {...this.state.currentMovie};
+        const now = new Date();
+        movie.id = now.getDate();
+        let movies = [...this.state.movies, movie];
+        this.setState({
+            ...this.state,
+            movies,
+            currentMovie: {movie: ''}
+        });
+    };
+
     render() {
         return (
             <Fragment>
                 <div className="my_container">
                     <form className="add">
-                        <input type="text" name="movie"/>
-                        <button type="submit" >Добавить</button>
+                        <input type="text" name="movie" value={this.state.currentMovie.movie} onChange={this.changeMovieInput}/>
+                        <button type="submit" onClick={this.addMovie}>Добавить</button>
                     </form>
                     {this.state.movies.map((movie) => {
                     return <Movie
