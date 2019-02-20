@@ -1,0 +1,21 @@
+.container {
+    width: 50%;
+    margin: 2% auto;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.add {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.add input {
+    width: 70%;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.add button {
+    float: right;
+}
