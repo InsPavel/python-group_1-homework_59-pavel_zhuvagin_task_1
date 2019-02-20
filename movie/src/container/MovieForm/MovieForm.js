@@ -12,10 +12,21 @@ class MovieForm extends Component {
         currentMovie: {movie: ''},
     };
 
+    deleteMovie = (id) => {
+        let movieId = this.state.movies.findIndex(movie =>
+            movie.id === id
+        );
+
+        const movies = [...this.state.movies];
+        movies.splice(movieId, 1);
+
+        this.setState({movies})
+        };
+
     render() {
         return (
             <Fragment>
-                <div className="container">
+                <div className="my_container">
                     <form className="add">
                         <input type="text" name="movie"/>
                         <button type="submit" >Добавить</button>
@@ -24,6 +35,7 @@ class MovieForm extends Component {
                     return <Movie
                         {...movie}
                         key={movie.id}
+                        onDelete={() => this.deleteMovie(movie.id)}
                     />
                 })}
                 </div>

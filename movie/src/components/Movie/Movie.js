@@ -4,9 +4,11 @@ import './Movie.css'
 class Movie extends Component {
     render(){
         return (
-            <div className="movie">
-                <p>{this.props.movie}</p>
-                <button>Delete</button>
+            <div className="row">
+                <div className="movie col col-9">
+                    <p>{this.props.movie}</p>
+                </div>
+                <div className="delete col col-1" onClick={this.props.onDelete}><p>x</p></div>
             </div>
         )
     }

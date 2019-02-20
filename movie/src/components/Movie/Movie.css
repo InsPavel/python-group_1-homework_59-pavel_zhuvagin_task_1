@@ -1,16 +1,27 @@
-.movie {
-    margin-bottom: 5px;
+.row {
     width: 100%;
+    padding: 15px;
 }
 
-.movie p {
-    display: inline-block;
-    width: 70%;
-    margin: 1% 0 ;
-    padding: 5px;
+.movie {
+    height: 50px;
     border: 2px solid black;
 }
 
-.movie button {
-   float: right;
+.movie p {
+    line-height: 48px;
+    margin: 0 ;
+}
+
+.delete p{
+    line-height: 48px;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.delete:hover {
+    color: red;
 }
