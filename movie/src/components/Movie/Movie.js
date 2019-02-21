@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Movie.css'
+import Button from "./Button/Button";
 
 class Movie extends Component {
     componentDidMount() {
@@ -24,7 +25,9 @@ class Movie extends Component {
                 <div className="movie col col-10">
                     <input type="text" value={this.props.movie} onChange={this.props.change}/>
                 </div>
-                <div className="delete col col-2" onClick={this.props.onDelete}><p>x</p></div>
+                <div className="col col-2">
+                    <Button onDelete={this.props.onDelete}/>
+                </div>
             </div>
         )
     }
