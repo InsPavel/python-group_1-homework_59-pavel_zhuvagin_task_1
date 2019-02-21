@@ -9,7 +9,7 @@ class MovieForm extends Component {
             {id: 1, movie: 'Зелёная книга'},
             {id: 2, movie: 'Астрал'},
         ],
-        currentMovie: {movie: ''},
+        currentMovie: {movie: ' '},
     };
 
     constructor(props) {
@@ -92,28 +92,12 @@ class MovieForm extends Component {
         });
     };
 
-    // localStorage = () => {
-    //     let state_string = JSON.stringify(this.state.movies);
-    //     console.log(state_string);
-    //     localStorage.setItem('name', state_string);
-    //     let satee = localStorage.getItem('name');
-    //     let state = JSON.parse(satee);
-    //     console.log(state);
-    //     this.setState({
-    //         ...this.state.movies,
-    //         state
-    //     });
-        //     let movie = localStorage.getItem(movie.id);
-        //     console.log(state);
-        //     return localStorage.getItem(movie.id);
-        // let state = JSON.parse(state_string);
-        // let movies = [...this.state.movies, state]
-        // console.log(state)
-    // };
+    isAddButtonDisabled = () => {
+        return this.state.currentMovie.movie === ' '
+    };
 
     render() {
         console.log('[MovieForm] render');
-        // this.localStorage();
         return (
             <Fragment>
                 <div className="my_container">
@@ -123,7 +107,7 @@ class MovieForm extends Component {
                         <input type="text" name="movie" value={this.state.currentMovie.movie} onChange={this.changeMovieInput}/>
                             </div>
                             <div className="col col-2">
-                        <button type="submit" onClick={this.addMovie}>Добавить</button>
+                        <button type="submit" disabled={this.isAddButtonDisabled()} onClick={this.addMovie}>Добавить</button>
                                 </div>
                             </div>
                     </form>
