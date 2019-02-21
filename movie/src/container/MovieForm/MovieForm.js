@@ -12,10 +12,23 @@ class MovieForm extends Component {
         currentMovie: {movie: ''},
     };
 
+    constructor(props) {
+        super(props);
+        console.log('[MovieForm] constructor');
+        console.log('[MovieForm] State exists: ', this.state.movies.length > 0);
+    }
+
+    componentDidMount() {
+        console.log('[MovieForm] DidMount');
+    }
+
+
     deleteMovie = (id) => {
         let movieId = this.state.movies.findIndex(movie =>
             movie.id === id
         );
+
+        localStorage.removeItem(id);
 
         const movies = [...this.state.movies];
         movies.splice(movieId, 1);
@@ -31,6 +44,7 @@ class MovieForm extends Component {
             ...this.state.currentMovie,
             [name]: value
         };
+
 
         this.setState({
             ...this.state,
@@ -49,6 +63,9 @@ class MovieForm extends Component {
             movie: event.target.value
         };
 
+        let movie_string = JSON.stringify(movie);
+        localStorage.setItem(movie.id, movie_string);
+
         let movies = [...this.state.movies];
         movies[movieId] = movie;
 
@@ -64,8 +81,10 @@ class MovieForm extends Component {
         event.preventDefault();
         let movie = {...this.state.currentMovie};
         const now = new Date();
-        movie.id = now.getDate();
+        movie.id = now.getTime();
         let movies = [...this.state.movies, movie];
+        let movie_string = JSON.stringify(movie);
+        localStorage.setItem(movie.id, movie_string);
         this.setState({
             ...this.state,
             movies,
@@ -73,7 +92,28 @@ class MovieForm extends Component {
         });
     };
 
+    // localStorage = () => {
+    //     let state_string = JSON.stringify(this.state.movies);
+    //     console.log(state_string);
+    //     localStorage.setItem('name', state_string);
+    //     let satee = localStorage.getItem('name');
+    //     let state = JSON.parse(satee);
+    //     console.log(state);
+    //     this.setState({
+    //         ...this.state.movies,
+    //         state
+    //     });
+        //     let movie = localStorage.getItem(movie.id);
+        //     console.log(state);
+        //     return localStorage.getItem(movie.id);
+        // let state = JSON.parse(state_string);
+        // let movies = [...this.state.movies, state]
+        // console.log(state)
+    // };
+
     render() {
+        console.log('[MovieForm] render');
+        // this.localStorage();
         return (
             <Fragment>
                 <div className="my_container">
